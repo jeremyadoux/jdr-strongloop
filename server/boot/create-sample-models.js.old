@@ -1,0 +1,72 @@
+var async = require('async');
+module.exports = function(app) {
+  //data sources
+  var mongoDs = app.dataSources.mongoDb;
+  //create all models
+  async.parallel({
+    players: async.apply(createPlayer),
+    groups: async.apply(createGroups)
+  }, function(err, results) {
+    if (err) throw err;
+    createMessages(results.players, results.groups, function(err) {
+      console.log('> models created sucessfully');
+    });
+  });
+  //create players
+  function createPlayer(cb) {
+    mongoDs.automigrate('player', function(err) {
+      if (err) return cb(err);
+      var Player = app.models.player;
+      Player.create([
+        {email: 'foo@bar.com', password: 'foobar'},
+        {email: 'john@doe.com', password: 'johndoe'},
+        {email: 'jane@doe.com', password: 'janedoe'}
+      ], cb);
+    });
+  }
+  //create groups
+  function createGroups(cb) {
+    mongoDs.automigrate('group', function(err) {
+      if (err) return cb(err);
+      var Group = app.models.group;
+      Group.create([
+        {title: 'Bel Cafe', description: 'Vancouver', created: Date.now()},
+        {title: 'Three Bees Coffee House', description: 'San Mateo', created: Date.now()},
+        {title: 'Caffe Artigiano', description: 'prout', created: Date.now()}
+      ], cb);
+    });
+  }
+  //create messages
+  function createMessages(players, groups, cb) {
+    mongoDs.automigrate('message', function(err) {
+      if (err) return cb(err);
+      var Message = app.models.message;
+      Message.create([
+        {
+          title: 'un title',
+          content: 'A very good coffee shop.',
+          publisherId: players[0].id,
+          groupId: groups[0].id
+        },
+        {
+          title: '2 title',
+          content: 'Quite pleasant.',
+          publisherId: players[1].id,
+          groupId: groups[0].id
+        },
+        {
+          title: '3 title',
+          content: 'It was ok.',
+          publisherId: players[1].id,
+          groupId: groups[1].id
+        },
+        {
+          title: '4 title',
+          content: 'I go here everyday.',
+          publisherId: players[2].id,
+          groupId: groups[2].id
+        }
+      ], cb);
+    });
+  }
+};

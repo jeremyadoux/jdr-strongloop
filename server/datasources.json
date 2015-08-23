@@ -1,0 +1,16 @@
+{
+  "db": {
+    "password": "29133947Je",
+    "name": "db",
+    "connector": "memory",
+    "user": "jadoux"
+  },
+  "mongoDb": {
+    "host": "mongodb",
+    "port": 27017,
+    "url": "",
+    "database": "jdr",
+    "name": "mongoDb",
+    "connector": "mongodb"
+  }
+}
