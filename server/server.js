@@ -20,7 +20,7 @@ app.use(function setCurrentUser(req, res, next) {
     console.log('pas de token');
     return next();
   }
-  app.models.UserModel.findById(req.accessToken.userId, function(err, user) {
+  app.models.Player.findById(req.accessToken.userId, function(err, user) {
     if (err) {
       console.log('aie aie');
       return next(err);
