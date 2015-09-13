@@ -16,8 +16,9 @@ module.exports = function(Message) {
 
   Message.observe('before save', function updateTimestamp(ctx, next) {
     var ctx = loopback.getCurrentContext();
+    console.log(ctx);
     var currentUser = ctx && ctx.get('currentUser');
-    console.log('currentUser.username: ', currentUser.username);
+    console.log(currentUser);
 
     next();
   });
