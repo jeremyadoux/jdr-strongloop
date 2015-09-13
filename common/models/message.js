@@ -12,17 +12,11 @@ module.exports = function(Message) {
     next();
   });
 
-  /*Message.observe('before save', function updateTimestamp(ctx, next) {
-    if(ctx.isNewInstance) {
-      var req = ctx.req;
+  Message.observe('before save', function updateTimestamp(ctx, next) {
+    var ctx = loopback.getCurrentContext();
+    var currentUser = ctx && ctx.get('currentUser');
+    console.log('currentUser.username: ', currentUser.username);
 
-      req.body.created = Date.now();
-      req.body.publisherId = req.accessToken.userId;
-
-      if (ctx.instance) {
-        ctx.instance.created = new Date();
-      }
-      next();
-    }
-  });*/
+    next();
+  });
 };
