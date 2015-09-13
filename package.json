@@ -14,7 +14,8 @@
     "loopback-datasource-juggler": "^2.19.0",
     "serve-favicon": "^2.0.1",
     "loopback-connector-mongodb": "latest",
-    "async": "latest"
+    "async": "latest",
+    "loopback-component-storage": "latest"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"

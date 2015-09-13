@@ -50,5 +50,13 @@
   "message": {
     "dataSource": "mongoDb",
     "public": true
+  },
+  "file": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "container": {
+    "dataSource": "storage",
+    "public": true
   }
 }

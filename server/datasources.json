@@ -6,11 +6,17 @@
     "user": "jadoux"
   },
   "mongoDb": {
-    "host": "mongodb",
+    "host": "127.0.0.1",
     "port": 27017,
     "url": "",
     "database": "jdr",
     "name": "mongoDb",
     "connector": "mongodb"
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./server/storage"
   }
 }
