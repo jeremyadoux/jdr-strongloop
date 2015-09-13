@@ -1,3 +1,5 @@
+var loopback = require('loopback');
+
 module.exports = function(Message) {
   Message.beforeRemote('create', function(context, user, next) {
     console.log('message create remote');
