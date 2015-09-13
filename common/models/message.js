@@ -10,8 +10,8 @@ module.exports = function(Message) {
 
   Message.observe('before save', function updateTimestamp(ctx, next) {
     if (ctx.instance) {
-      var ctx = loopback.getCurrentContext();
-      var currentUser = ctx && ctx.get('currentUser');
+      var context = loopback.getCurrentContext();
+      var currentUser = context && context.get('currentUser');
 
       ctx.instance.created = new Date();
       ctx.instance.publisherId = currentUser.id;
