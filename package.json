@@ -15,7 +15,8 @@
     "serve-favicon": "^2.0.1",
     "loopback-connector-mongodb": "latest",
     "async": "latest",
-    "loopback-component-storage": "latest"
+    "loopback-component-storage": "latest",
+    "uniqid" : "latest"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"

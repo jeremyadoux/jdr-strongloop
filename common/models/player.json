@@ -5,13 +5,28 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "aboutme": {
+      "type": "string"
+    }
+  },
   "validations": [],
   "relations": {
     "messages": {
       "type": "hasMany",
       "model": "message",
       "foreignKey": "publisherId"
+    },
+    "avatar": {
+      "type": "belongsTo",
+      "model": "file",
+      "foreignKey": ""
     }
   },
   "acls": [],

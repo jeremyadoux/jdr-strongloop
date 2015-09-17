@@ -10,7 +10,7 @@ module.exports = function(app) {
 
       //Now preparing the file name..
       //customerId_time_orderId.extension
-      var NewFileName = 'globule.' + fileExtension;
+      var NewFileName = 'fff'+Math.floor(Math.random() * (50000000000 - 1) + 1)+'.' + fileExtension;
 
       //And the file name will be saved as defined..
       return NewFileName;
@@ -19,4 +19,4 @@ module.exports = function(app) {
       throw "FileTypeError: Only File of Image type is accepted.";
     }
   };
-}
+};
