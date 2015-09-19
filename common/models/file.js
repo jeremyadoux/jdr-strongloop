@@ -1,4 +1,4 @@
-var CONTAINERS_URL = '/api/containers/';
+var CONTAINERS_URL = '/api/files/';
 module.exports = function(File) {
 
   File.upload = function (ctx,options,cb) {
@@ -14,7 +14,7 @@ module.exports = function(File) {
           name: fileInfo.name,
           type: fileInfo.type,
           container: fileInfo.container,
-          url: CONTAINERS_URL+fileInfo.container+'/download/'+fileInfo.name
+          url: CONTAINERS_URL+'download/'+fileInfo.name
         },function (err,obj) {
           if (err !== null) {
             cb(err);
@@ -26,18 +26,73 @@ module.exports = function(File) {
     });
   };
 
+  File.download = function(ctx, res, width, height, file, cb) {
+    if(!width) {
+      width = false;
+      height = false;
+    } else {
+      if (!height) {
+        var transformedFileName = width + "-" + file;
+      } else {
+        var transformedFileName = width + "-" + height + "-" + file;
+      }
+
+      File.app.models.container.getFile('common', transformedFileName, function (err, fileObj) {
+        if (err) {
+          File.app.models.container.getFile('common', file, function (err, fileObj) {
+            if (err) {
+              cb(err);
+            } else {
+              var fs = require('fs')
+                , gm = require('gm');
+
+              gm('./server/storage/common/'+file)
+                .resize(width, height)
+                .write('./server/storage/common/'+transformedFileName, function (err) {
+                  if (err) {
+                    cb(err);
+                  } else {
+                    return File.app.models.container.download('common', transformedFileName, res, cb);
+                  }
+                });
+            }
+          });
+        } else {
+          return File.app.models.container.download('common', transformedFileName, res, cb);
+        }
+      });
+
+    }
+  };
+
   File.remoteMethod(
     'upload',
     {
       description: 'Uploads a file',
       accepts: [
         { arg: 'ctx', type: 'object', http: { source:'context' } },
-        { arg: 'options', type: 'object', http:{ source: 'query'} }
+        { arg: 'options', type: 'object', http:{ source: 'query'} },
       ],
       returns: {
         arg: 'fileObject', type: 'object', root: true
       },
       http: {verb: 'post'}
+    }
+  );
+
+  File.remoteMethod(
+    'download',
+    {
+      description: 'download a file',
+      accepts: [
+        { arg: 'ctx', type: 'object', http: { source:'context' } },
+        { arg: 'res', type: 'object', http: { source:'res' } },
+        { arg: 'width', type: 'Number', http:{ source: 'query'} },
+        { arg: 'height', type: 'Number', http:{ source: 'query'} },
+        {arg: 'file', type: 'String', required: true}
+      ],
+      returns: {},
+      http: {path: '/download/:file', verb: 'get'}
     }
   );
 

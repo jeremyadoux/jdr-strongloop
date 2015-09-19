@@ -16,7 +16,9 @@
     "loopback-connector-mongodb": "latest",
     "async": "latest",
     "loopback-component-storage": "latest",
-    "uniqid" : "latest"
+    "uniqid" : "latest",
+    "gm" : "latest"
+
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"
