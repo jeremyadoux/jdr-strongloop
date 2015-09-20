@@ -16,8 +16,10 @@
     "loopback-connector-mongodb": "latest",
     "async": "latest",
     "loopback-component-storage": "latest",
-    "uniqid" : "latest",
-    "gm" : "latest"
+    "uniqid": "latest",
+    "gm": "latest",
+    "socket.io": "latest",
+    "socketio-auth": "latest"
 
   },
   "optionalDependencies": {
