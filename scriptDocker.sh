@@ -15,3 +15,7 @@ sudo chmod 777 ~/.bash_aliases
 
 sudo docker run -d -p 27017:27017 -v /home/vagrant/mongodb:/data/db --name mongodb mongo
 sudo docker run -d -p 1080:1080 --name mailcatcher jdr/mailcatcher
+
+
+#docker run --name mysql -e MYSQL_ROOT_PASSWORD=R0@g25dnC -d mysql
+#docker run -p 80:80 --name wordpress --link mysql:mysql -d wordpress

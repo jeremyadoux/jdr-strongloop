@@ -1,19 +1,20 @@
 {
-  "name": "file",
+  "name": "Chronique",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    },
-    "url": {
+    "title": {
       "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "created": {
+      "type": "date",
       "required": true
     }
   },

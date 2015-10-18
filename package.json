@@ -20,7 +20,6 @@
     "gm": "latest",
     "socket.io": "latest",
     "socketio-auth": "latest"
-
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"
