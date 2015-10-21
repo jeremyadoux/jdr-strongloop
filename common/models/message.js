@@ -14,7 +14,7 @@ module.exports = function(Message) {
       var context = loopback.getCurrentContext();
       var currentUser = context && context.get('currentUser');
 
-      ctx.instance.created = new Date();
+      ctx.instance.created = Date.now();
       ctx.instance.publisherId = currentUser.id;
     }
 

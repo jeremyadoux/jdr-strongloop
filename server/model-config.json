@@ -62,5 +62,13 @@
   "Chronique": {
     "dataSource": "mongoDb",
     "public": true
+  },
+  "Chapter": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "Character": {
+    "dataSource": "mongoDb",
+    "public": true
   }
 }

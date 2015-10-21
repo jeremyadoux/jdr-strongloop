@@ -1,5 +1,5 @@
 {
-  "name": "Chronique",
+  "name": "Chapter",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -10,30 +10,33 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "string"
+    "weight": {
+      "type": "number",
+      "required": true
+    },
+    "content": {
+      "type": "string",
+      "required": true
     },
     "created": {
       "type": "date",
       "required": true
+    },
+    "sound": {
+      "type": "string"
     }
   },
   "validations": [],
   "relations": {
+    "chronique": {
+      "type": "belongsTo",
+      "model": "Chronique",
+      "foreignKey": "chroniqueId"
+    },
     "player": {
       "type": "belongsTo",
       "model": "player",
       "foreignKey": "publisherId"
-    },
-    "chapters": {
-      "type": "hasMany",
-      "model": "Chapter",
-      "foreignKey": "chroniqueId"
-    },
-    "character": {
-      "type": "belongsTo",
-      "model": "Character",
-      "foreignKey": "characterId"
     }
   },
   "acls": [],

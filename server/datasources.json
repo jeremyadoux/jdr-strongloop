@@ -6,7 +6,7 @@
     "user": "jadoux"
   },
   "mongoDb": {
-    "host": "localhost",
+    "host": "mongodb",
     "port": 27017,
     "url": "",
     "database": "jdr",

@@ -1,17 +1,14 @@
 {
-  "name": "Chronique",
+  "name": "Character",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "title": {
+    "name": {
       "type": "string",
       "required": true
-    },
-    "description": {
-      "type": "string"
     },
     "created": {
       "type": "date",
@@ -23,16 +20,11 @@
     "player": {
       "type": "belongsTo",
       "model": "player",
-      "foreignKey": "publisherId"
+      "foreignKey": "playerId"
     },
-    "chapters": {
+    "chroniques": {
       "type": "hasMany",
-      "model": "Chapter",
-      "foreignKey": "chroniqueId"
-    },
-    "character": {
-      "type": "belongsTo",
-      "model": "Character",
+      "model": "Chronique",
       "foreignKey": "characterId"
     }
   },

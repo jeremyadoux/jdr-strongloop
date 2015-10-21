@@ -30,6 +30,21 @@
       "type": "belongsTo",
       "model": "file",
       "foreignKey": ""
+    },
+    "chroniques": {
+      "type": "hasMany",
+      "model": "Chronique",
+      "foreignKey": "publisherId"
+    },
+    "chapters": {
+      "type": "hasMany",
+      "model": "Chapter",
+      "foreignKey": "publisherId"
+    },
+    "characters": {
+      "type": "hasMany",
+      "model": "Character",
+      "foreignKey": "playerId"
     }
   },
   "acls": [],
