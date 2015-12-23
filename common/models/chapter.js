@@ -1,3 +1,6 @@
+var pubsub = require('../../server/pubsub.js');
+var loopback = require('loopback');
+
 module.exports = function(Chapter) {
   Chapter.beforeRemote('create', function(context, user, next) {
     var req = context.req;
