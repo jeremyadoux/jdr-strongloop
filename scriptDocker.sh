@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt-get update
-sudo curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+sudo curl -sSL https://get.docker.com | sudo sh
 
 sudo mkdir /home/vagrant/mongodb
 
