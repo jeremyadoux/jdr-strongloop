@@ -58,7 +58,7 @@ module.exports = function(File) {
             }
           });
         } else {
-          cb(err);
+          return File.app.models.container.download('common', transformedFileName, res, cb);
         }
       });
 
