@@ -33,8 +33,6 @@ module.exports = function(Message) {
         var r = messageReturned.toObject();
         r.player= data;
 
-        console.log(r);
-
         pubsub.publish(socket, {
           collectionName: 'Message',
           data: r,

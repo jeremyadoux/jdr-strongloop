@@ -6,6 +6,7 @@ module.exports = function(Chapter) {
     var req = context.req;
     req.body.created = Date.now();
     req.body.publisherId = req.accessToken.userId;
+    console.log(req.body);
     next();
   });
 
@@ -19,5 +20,43 @@ module.exports = function(Chapter) {
     }
     next();
   });
+
+  //Chapter after save..
+  Chapter.observe('after save', function (ctx, next) {
+    var socket = Chapter.app.io;
+    if (ctx.isNewInstance) {
+      //Now publishing the data..
+
+      console.log(ctx.isNewInstance);
+      pubsub.publish(socket, {
+        collectionName: 'Chapter',
+        data: ctx.instance,
+        method: 'POST'
+      });
+    } else {
+      //Now publishing the data..
+      pubsub.publish(socket, {
+        collectionName: 'Chapter',
+        data: ctx.instance,
+        modelId: ctx.instance.id,
+        method: 'PUT'
+      });
+    }
+    //Calling the next middleware..
+    next();
+  }); //after save..
+  //Chapterdetail before delete..
+  Chapter.observe("before delete", function (ctx, next) {
+    var socket = Chapter.app.io;
+    //Now publishing the data..
+    pubsub.publish(socket, {
+      collectionName: 'Chapter',
+      data: ctx.instance.id,
+      modelId: ctx.instance.id,
+      method: 'DELETE'
+    });
+    //move to next middleware..
+    next();
+  }); //before delete..
 
 };
